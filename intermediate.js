@@ -56,16 +56,89 @@ function Triple(string) {
 //Triple("xxxabyyyycd");
 
 
-var parents
 
 function paragraph() {
 	var p=document.createElement("p");
+	p.className ="Paragraph";
 	var node=document.createTextNode("A new paragraph");
 	p.appendChild(node); 
 	var element=document.getElementById("para");
 	element.appendChild(p);
-	return node;
 }
-function changeTextInParagraph(node) {	
-	node=document.getElementById("input");
+function changeTextInParagraph() {	
+	var y=document.getElementsByClassName("Paragraph");
+	console.log(y);
+	var x=document.getElementById("input").value;
+	for(i=0;i<=y.length-1;i++){
+		y[i].innerHTML=x;
+	}
 }
+function deleteParagraph() {
+	var y=document.getElementsByClassName("Paragraph");
+	for(i=y.length-1;i>=0;i--){
+		y[i].innerHTML="";
+	}	
+}
+	
+var requestURL='https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json';
+var request=new XMLHttpRequest();
+request.open('GET',requestURL);
+request.responseType='json';
+request.send();
+request.onload=function() {
+	var requestData=request.response;
+//	console.log(requestData);
+	for(var members in requestData){
+		for(var powers in requestData[members]){
+			console.log(requestData[members][powers]);
+			var myH1=document.create('h1');
+			myH1.innerHTML=powers+";"+requestData[members][powers];
+		}
+	}
+}
+var requestURL='https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json';
+var request=new XMLHttpRequest();
+request.open('GET',requestURL);
+request.responseType='json';
+request.send();
+request.onload=function() {
+	var i,j,k,x="";
+	var requestData=request.response;
+	//console.log(requestData);
+	x+="<p> Squad Name: "+requestData.squadName+"</p>";
+		x+="<p> Home Town: "+requestData.homeTown+"</p>";
+		x+="<p> Formed: "+requestData.formed+"</p>";
+		x+="<p> Secret Base: "+requestData.secretBase+"</p>";
+		x+="<p> Active: "+requestData.active+"</p>";
+		for(j in  requestData.members) {
+			x+="<p><b>"+requestData.members[j].name+"</b></p>";
+			x+="<p>"+requestData.members[j].age+"</p>";
+			x+="<p>"+requestData.members[j].secretIdentity+"</p>";
+			for(k in requestData.members[j].powers) {
+				x+="<p>"+requestData.members[j].powers[k]+"</p>";
+			}
+		}
+//	document.getElementById("example").innerHTML=x;
+}
+
+var requestURL='https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json';
+var request=new XMLHttpRequest();
+request.open('GET',requestURL);
+request.responseType='json';
+request.send();
+request.onload=function() {
+	var i,x;
+	var requestData=request.response;
+	for (i in requestData) {
+	x=requestData[i].nm;
+	x+=requestData[i].cty;
+	x+=requestData[i].hse;
+	x+=requestData[i].yrs;
+	console.log(x);
+	}
+	document.getElementById("royal").innerHTML=x;
+}
+
+
+
+		

@@ -86,6 +86,9 @@ var words=["Sam's", "the", "best"];
 words.push("always");
 //console.log(words);
 //delete words[3];
+
+
+
 //console.log(words);
 words.splice(3,1);
 //console.log(words);
