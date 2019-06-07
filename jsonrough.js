@@ -10,16 +10,46 @@ request.send();
 
 
 request.onload = function() {
-var requestData = request.response;
-var container = document.getElementById("container");
-console.log(requestData);
+	var requestData = request.response;
+	var container = document.getElementById("container");
+	console.log(requestData);
+	var x;
 
-for(var key in requestData){
-    for(var item in requestData[key]){
-    console.log(requestData[key][item]);
-    var myH1 = document.createElement('h1');
-    myH1.innerHTML = item + ": " + requestData[key][item];
-    container.appendChild(myH1);
-    }
+//for(var key in requestData){
+    //for(var item in requestData[key]){
+	//	console.log(requestData[key][item]);
+	//	var myH1 = document.createElement('p');
+	//	myH1.innerHTML = item + ": " + requestData[key][item];
+	//	container.appendChild(myH1);
+	//	}
+	//}
+//}
+
+for(var i in requestData) {
+			x+=requestData[i].name;
+			x+=requestData[i].occupation;
+			x+=requestData[i].age;
+			
+		}
+	document.getElementById("container").innerHTML=x;
 }
-}
+//var requestURL='https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json';
+//var request=new XMLHttpRequest();
+//request.open('GET',requestURL);
+//request.responseType='json';
+//request.send();
+//request.onload=function() {
+	//var requestData=request.response;
+	//var example=document.getElementById("example");
+//	console.log(requestData);
+	//for (key in requestData) {
+	//	for (item in requestData[key]) {
+	//		console.log(requestData[key][item]);
+	//		var p=document.createElement("p");
+		//	p.innerHTML=item+":"+requestData[key][item];
+	//		example.appendChild(p);
+		//}
+	//}
+//}
+
+		

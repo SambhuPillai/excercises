@@ -7,12 +7,21 @@
 	<button type="button" onclick="deleteParagraph()">Delete Paragraph</button>
 	Text: <input type="text" id="input"></input>
 	<input type="submit" onclick="changeTextInParagraph()"></input>
-	<button type="button" onclick="kings()">Search for kings</button>
 	<input type="text" id="royal"></input>
+	<button type="button" onclick="kings()">Search for kings</button>
+	
 	<script src="intermediate.js"></script>
 	<div id="para">
 	<p>"paragraph"</p>
+	Check in cars: <input type="text" id="carcheckin"></input>
+	<input type="submit" onclick="garage()"></input><br>
+	Check out cars: <input type="text" id="carcheckout"></input>
+	<input type="submit" onclick="garage()"></input>
+	<button type="button" onclick="garage()">Output garage contents</button>
+	<button type="button" onclick="garage()">Calculate bill</button>
 	</div>
 	<p id="example"></p>
+	<p id="kings"></p>
+	<p id="list"></p>
 	</body>
 </html>

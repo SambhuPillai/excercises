@@ -90,55 +90,76 @@ request.onload=function() {
 //	console.log(requestData);
 	for(var members in requestData){
 		for(var powers in requestData[members]){
-			console.log(requestData[members][powers]);
-			var myH1=document.create('h1');
-			myH1.innerHTML=powers+";"+requestData[members][powers];
+	//		console.log(requestData[members][powers]);
+	//		var myH1=document.create('h1');
+	//		myH1.innerHTML=powers+";"+requestData[members][powers];
 		}
 	}
 }
-var requestURL='https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json';
-var request=new XMLHttpRequest();
-request.open('GET',requestURL);
-request.responseType='json';
-request.send();
-request.onload=function() {
-	var i,j,k,x="";
-	var requestData=request.response;
+//var requestURL='https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json';
+//var request=new XMLHttpRequest();
+//request.open('GET',requestURL);
+//request.responseType='json';
+//request.send();
+//request.onload=function() {
+	//var i,j,x="";
+	//var requestData=request.response;
 	//console.log(requestData);
-	x+="<p> Squad Name: "+requestData.squadName+"</p>";
-		x+="<p> Home Town: "+requestData.homeTown+"</p>";
-		x+="<p> Formed: "+requestData.formed+"</p>";
-		x+="<p> Secret Base: "+requestData.secretBase+"</p>";
-		x+="<p> Active: "+requestData.active+"</p>";
-		for(j in  requestData.members) {
-			x+="<p><b>"+requestData.members[j].name+"</b></p>";
-			x+="<p>"+requestData.members[j].age+"</p>";
-			x+="<p>"+requestData.members[j].secretIdentity+"</p>";
-			for(k in requestData.members[j].powers) {
-				x+="<p>"+requestData.members[j].powers[k]+"</p>";
-			}
-		}
+	//x+="<p> Squad Name: "+requestData.squadName+"</p>";
+	//	x+="<p> Home Town: "+requestData.homeTown+"</p>";
+	//	x+="<p> Formed: "+requestData.formed+"</p>";
+	//	x+="<p> Secret Base: "+requestData.secretBase+"</p>";
+	//	x+="<p> Active: "+requestData.active+"</p>";
+	//	for(i in  requestData.members) {
+	//		x+="<p><b>"+requestData.members[i].name+"</b></p>";
+	//		x+="<p>"+requestData.members[i].age+"</p>";
+	//		x+="<p>"+requestData.members[i].secretIdentity+"</p>";
+//			//for(j in requestData.members[i].powers) {
+		//		x+="<p>"+requestData.members[i].powers[j]+"</p>";
+	//		}
+//		}
 //	document.getElementById("example").innerHTML=x;
-}
-
-var requestURL='https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json';
-var request=new XMLHttpRequest();
-request.open('GET',requestURL);
-request.responseType='json';
-request.send();
-request.onload=function() {
-	var i,x;
-	var requestData=request.response;
-	for (i in requestData) {
-	x=requestData[i].nm;
-	x+=requestData[i].cty;
-	x+=requestData[i].hse;
-	x+=requestData[i].yrs;
-	console.log(x);
+//}
+function kings() {
+	var requestURL='https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json';
+	var request=new XMLHttpRequest();
+	request.open('GET',requestURL);
+	request.responseType='json';
+	request.send();
+	request.onload=function() {
+		var i,x="";
+		var y=document.getElementById("royal");
+		z=document.getElementById("kings");
+		var requestData=request.response;
+			
+		str = y.value.toLowerCase();
+		document.getElementById("kings").innerHTML="";
+		for (i in requestData) {
+			//x+=requestData[i].nm;
+			//x+=requestData[i].cty;
+			//x+=requestData[i].hse;
+			//x+=requestData[i].yrs;
+			//console.log(x);
+			
+			if (requestData[i].nm.toLowerCase().includes(str)||requestData[i].cty.toLowerCase().includes(str)||requestData[i].hse.toLowerCase().includes(str)||requestData[i].yrs.toLowerCase().includes(str)) {
+				console.log(requestData[i]);
+				document.getElementById("kings").innerHTML+="<p>Name: "+requestData[i].nm+", City: "+requestData[i].cty+", House: "+requestData[i].hse+", Years: "+requestData[i].yrs+"</p>";
+			}else if(requestData[i].yrs.includes("-")){
+				yrsStart = requestData[i].yrs.split("-")[0]
+				yrsEnd = requestData[i].yrs.split("-")[1]
+				yrsStart = parseInt(yrsStart);
+				yrsEnd = parseInt(yrsEnd);
+				num = parseInt(str);
+				if(num>=yrsStart && num<=yrsEnd){
+					console.log(requestData[i]);
+					document.getElementById("kings").innerHTML+="<p>Name: "+requestData[i].nm+", City: "+requestData[i].cty+", House: "+requestData[i].hse+", Years: "+requestData[i].yrs+"</p>";
+				}
+			}
+			//document.getElementById("kings").innerHTML=requestData[i].includes(str);
+			//document.getElementById("kings").innerHTML=JSON.stringify(requestData[i]);
+		}
+		
 	}
-	document.getElementById("royal").innerHTML=x;
 }
-
-
 
 		
